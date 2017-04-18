@@ -1,0 +1,18 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/main.cs">
+    <Files>
+      <File FileName="Assets/Scripts/main.cs" Line="305" Column="49" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\padrao\Documents\Unity Projects\Canibais e Missionarios 2d\Assets\Scripts\main.cs" line="98" column="1" />
+      <Breakpoint file="C:\Users\padrao\Documents\Unity Projects\Canibais e Missionarios 2d\Assets\Scripts\main.cs" line="75" column="1" />
+      <Breakpoint file="C:\Users\padrao\Documents\Unity Projects\Canibais e Missionarios 2d\Assets\Scripts\main.cs" line="87" column="1" />
+      <Breakpoint file="C:\Users\padrao\Documents\Unity Projects\Canibais e Missionarios 2d\Assets\Scripts\main.cs" line="93" column="1" />
+      <Breakpoint file="C:\Users\padrao\Documents\Unity Projects\Canibais e Missionarios 2d\Assets\Scripts\main.cs" line="267" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
