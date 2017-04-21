@@ -28,7 +28,7 @@ public class main : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Tree t = new Tree (new Node (new State(3,3,0,0, BoatPosition.LEFT), null));
-		var res = t.Search (new Node( new State(3,0,0,3, BoatPosition.RIGHT), null));
+		var res = t.Search (new Node( new State(0,0,3,3, BoatPosition.RIGHT), null));
 		boatIsLeft = true;
 
 		foreach (Node node in res)
@@ -271,7 +271,7 @@ public class main : MonoBehaviour {
 		}
 
 		public bool isValid(){
-			return (this.numCanibaisLeft == 0) || (this.numBoysLeft == 0 || this.numBoysLeft >= this.numCanibaisLeft) 
+			return (this.numBoysLeft == 0 || this.numBoysLeft >= this.numCanibaisLeft) 
 				&& (this.numBoysRight == 0 || this.numBoysRight >= this.numCanibaisRight) 
 				&& this.numCanibaisLeft > -1 && this.numBoysLeft > -1 && this.numCanibaisRight > -1 && this.numBoysRight > -1;
 		}
