@@ -12,6 +12,7 @@ public class main : MonoBehaviour {
 	public GameObject boat;
 	public GameObject leftMargin;
 	public GameObject rightMargin;
+    public GameObject mario;
 
 	LinkedList<GameObject> passengers = new LinkedList<GameObject>();
 
@@ -68,6 +69,7 @@ public class main : MonoBehaviour {
 				if (passengers.Last.Value != null)
 						passengers.Last.Value.transform.parent = boat.transform;
 					walking = false;
+                    setPassengersAnimation(false);
 					moveBoat ();
 				}
 		}
@@ -78,6 +80,7 @@ public class main : MonoBehaviour {
 					if (GoToLand (passengers.First.Value, passengers.Last.Value, step, leftMargin)) {
 						//chegou na terra
 						goingToLand = false;
+                        setPassengersAnimation(false);
 						currentState = nextState;
 					try{
 						nextState = states.Dequeue ();
@@ -109,10 +112,12 @@ public class main : MonoBehaviour {
 						}
 						walking = true;
 				}
+                
 			} else {
 					if (GoToLand (passengers.First.Value, passengers.Last.Value, step, rightMargin)) {
 						//chegou na terra
 						goingToLand = false;
+                        setPassengersAnimation(false);
 						currentState = nextState;
 					try{
 						nextState = states.Dequeue ();
@@ -121,6 +126,7 @@ public class main : MonoBehaviour {
 						Debug.Log ("Game Over" + ex.ToString());
 						return;
 					}
+                    
 						passengers.Clear ();
 						int[] diff = new int[] {
 							currentState.numCanibaisRight - nextState.numCanibaisRight,
@@ -144,37 +150,31 @@ public class main : MonoBehaviour {
 					}
 						walking = true;
 					}
+                    setPassengersAnimation(true);
 			}
 		}
 
-//		mumias [0].transform.position = Vector3.MoveTowards (mumias[0].transform.position, 
-//			destination0, step);
-//		boys [0].transform.position = Vector3.MoveTowards (boys[0].transform.position, 
-//			destination1, step);
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
+
 		if ( other.CompareTag ("leftMargin") ) {
 			Debug.Log ("colidiu left");
 			if (boat.transform.childCount != 0 ) {//deve descer
-				for(int i = 0; i < boat.transform.childCount; i++){
-					if (boat.transform.GetChild (i).GetComponent<Animator> () != null) {
-						boat.transform.GetChild (i).GetComponent<Animator> ().SetBool ("isWalk", false);
-					}
-
-				}
+                setPassengersAnimation(true);
 					
 				boat.transform.DetachChildren();
 				goingToLand = true;
-
 			} else {//first collide
-				Debug.Log("mordeo");
+				
 			}
 		} else if (other.CompareTag ("rightMargin")) {//deve descer
 			Debug.Log ("colidiu right");
 			boat.transform.DetachChildren();
 			goingToLand = true;
+            setPassengersAnimation(true);
 		}
+        Debug.Log(currentState.boatPosition.ToString());
 	}
 
 	private void moveBoat(){
@@ -192,7 +192,6 @@ public class main : MonoBehaviour {
 
 		if (obj0 != null){
 			Vector3 destination = new Vector3 (boat.transform.position.x + 0.5f, obj0.transform.position.y, obj0.transform.position.z);
-			//obj0.transform.position = Vector3.Lerp (obj0.transform.position, destination, 0.1f);
 			obj0.transform.position = Vector3.MoveTowards (obj0.transform.position, destination, step);
 			if (obj0.transform.position == destination)
 				ended0 = true;
@@ -202,7 +201,6 @@ public class main : MonoBehaviour {
 
 		if (obj1 != null){
 			Vector3 destination = new Vector3 (boat.transform.position.x - 0.5f, obj1.transform.position.y, obj1.transform.position.z);
-			//obj0.transform.position = Vector3.Lerp (obj0.transform.position, destination, 0.1f);
 			obj1.transform.position = Vector3.MoveTowards (obj1.transform.position, destination, step);
 			if (obj1.transform.position == destination)
 				ended1 = true;
@@ -218,14 +216,19 @@ public class main : MonoBehaviour {
 		int factor;
 
 		if (currentState.boatPosition == BoatPosition.LEFT) {
-			factor = (mumiasLeft.Count + boysLeft.Count) ;
+            factor = (mumiasRight.Count + boysRight.Count) ;
+            foreach (GameObject obj in mumiasRight)
+                if (target.transform.position.x + factor + 0.5f == (int)obj.transform.position.x)
+                    factor--;
+            foreach (GameObject obj in boysRight)
+                if (target.transform.position.x + factor + 0.5f == (int)obj.transform.position.x)
+                    factor--;
 		} else {
-			factor = (mumiasRight.Count + boysRight.Count) * -1;
+            factor = (mumiasLeft.Count + boysLeft.Count) * -1;
 		}
 
 		if (obj0 != null){
-			Vector3 destination = new Vector3 (target.transform.position.x + factor, obj0.transform.position.y, obj0.transform.position.z);
-			//obj0.transform.position = Vector3.Lerp (obj0.transform.position, destination, 0.1f);
+			Vector3 destination = new Vector3 (target.transform.position.x + factor + 0.5f, obj0.transform.position.y, obj0.transform.position.z);
 			obj0.transform.position = Vector3.MoveTowards (obj0.transform.position, destination, step);
 			if (obj0.transform.position == destination)
 				ended0 = true;
@@ -234,8 +237,7 @@ public class main : MonoBehaviour {
 			ended0 = true;
 
 		if (obj1 != null){
-			Vector3 destination = new Vector3 (target.transform.position.x + factor +1, obj1.transform.position.y, obj1.transform.position.z);
-			//obj0.transform.position = Vector3.Lerp (obj0.transform.position, destination, 0.1f);
+			Vector3 destination = new Vector3 (target.transform.position.x + factor, obj1.transform.position.y, obj1.transform.position.z);
 			obj1.transform.position = Vector3.MoveTowards (obj1.transform.position, destination, step);
 			if (obj1.transform.position == destination)
 				ended1 = true;
@@ -245,6 +247,17 @@ public class main : MonoBehaviour {
 		return ended0 && ended1;
 	}
 
+    private void setPassengersAnimation(bool animate)
+    {
+        foreach(GameObject passenger in passengers)
+        {
+            if (passenger != null)
+            {
+                //passenger.GetComponentInChildren<Animator>().SetBool("isWalk", animate);
+            }
+
+        }
+    }
 
 	//*************************** Logical classes **********************************************************************
 	public enum BoatPosition{ LEFT, RIGHT }
