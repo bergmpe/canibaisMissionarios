@@ -17,19 +17,19 @@ Platform assembly: C:\Users\padrao\Documents\Canibais e Missionarios\canibaisMis
 Loading C:\Users\padrao\Documents\Canibais e Missionarios\canibaisMissionarios\canibais e missionarios_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\padrao\Documents\Canibais e Missionarios\canibaisMissionarios\canibais e missionarios_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Users\padrao\Documents\Canibais e Missionarios\canibaisMissionarios\canibais e missionarios_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.033 seconds
+- Completed reload, in  0.032 seconds
 Platform assembly: C:\Users\padrao\Documents\Canibais e Missionarios\canibaisMissionarios\canibais e missionarios_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\padrao\Documents\Canibais e Missionarios\canibaisMissionarios\canibais e missionarios_Data\Managed\System.dll (this message is harmless)
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 3.117894 ms
+UnloadTime: 2.084288 ms
 achou target
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-count 16
+count 13
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -85,18 +85,6 @@ nCL 3, nBL 0, nCR 0, nBR 3 pos=LEFT
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-nCL 1, nBL 0, nCR 2, nBR 3 pos=RIGHT
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-nCL 1, nBL 1, nCR 2, nBR 2 pos=LEFT
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-nCL 0, nBL 0, nCR 3, nBR 3 pos=RIGHT
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
 colidiu left
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
@@ -129,6 +117,85 @@ LEFT
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
+colidiu left
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+RIGHT
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+colidiu right
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+LEFT
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+colidiu left
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+RIGHT
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+colidiu right
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+LEFT
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+colidiu left
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+RIGHT
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+colidiu right
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+LEFT
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+colidiu left
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+RIGHT
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+colidiu right
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+LEFT
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+colidiu left
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+RIGHT
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Game OverSystem.InvalidOperationException: Operation is not valid due to the current state of the object
+  at System.Collections.Generic.Queue`1[main+State].Peek () [0x00000] in <filename unknown>:0 
+  at System.Collections.Generic.Queue`1[main+State].Dequeue () [0x00000] in <filename unknown>:0 
+  at main.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 134c -> priority: 1 
-  Thread -> id: be4 -> priority: 1 
+  Thread -> id: 7ec -> priority: 1 
+  Thread -> id: f24 -> priority: 1 

@@ -29,7 +29,7 @@ public class main : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Tree t = new Tree (new Node (new State(3,3,0,0, BoatPosition.LEFT), null));
-		var res = t.Search (new Node( new State(0,0,3,3, BoatPosition.RIGHT), null));
+		var res = t.Search (new Node( new State(3,0,0,3, BoatPosition.LEFT), null));
 		boatIsLeft = true;
 
 		foreach (Node node in res)
@@ -77,7 +77,7 @@ public class main : MonoBehaviour {
 		if (goingToLand){
 			if (currentState.boatPosition == BoatPosition.RIGHT) {
 				
-					if (GoToLand (passengers.First.Value, passengers.Last.Value, step, leftMargin)) {
+					if (GoToLand (passengers.First.Value, passengers.Last.Value, step)) {
 						//chegou na terra
 						goingToLand = false;
                         setPassengersAnimation(false);
@@ -114,7 +114,7 @@ public class main : MonoBehaviour {
 				}
                 
 			} else {
-					if (GoToLand (passengers.First.Value, passengers.Last.Value, step, rightMargin)) {
+					if (GoToLand (passengers.First.Value, passengers.Last.Value, step)) {
 						//chegou na terra
 						goingToLand = false;
                         setPassengersAnimation(false);
@@ -210,42 +210,40 @@ public class main : MonoBehaviour {
 		return ended0 && ended1;
 	}
 
-	private bool GoToLand(GameObject obj0, GameObject obj1, float step, GameObject target){
-		bool ended0 = false;
-		bool ended1 = false;
-		int factor;
+    private bool GoToLand(GameObject obj0, GameObject obj1, float step)
+    {
+        bool ended0 = false;
+        bool ended1 = false;
+        Vector3 targetPosition0;
+        Vector3 targetPosition1;
 
-		if (currentState.boatPosition == BoatPosition.LEFT) {
-            factor = (mumiasRight.Count + boysRight.Count) ;
-            foreach (GameObject obj in mumiasRight)
-                if (target.transform.position.x + factor + 0.5f == (int)obj.transform.position.x)
-                    factor--;
-            foreach (GameObject obj in boysRight)
-                if (target.transform.position.x + factor + 0.5f == (int)obj.transform.position.x)
-                    factor--;
-		} else {
-            factor = (mumiasLeft.Count + boysLeft.Count) * -1;
-		}
+        if (obj0 != null)
+        {
+            if (currentState.boatPosition == BoatPosition.LEFT)
+                targetPosition0 = obj0.GetComponent<properties>().rightPosition;
+            else
+                targetPosition0 = obj0.GetComponent<properties>().leftPosition;
+            obj0.transform.position = Vector3.MoveTowards(obj0.transform.position, targetPosition0, step);
+            if (obj0.transform.position == targetPosition0)
+                ended0 = true;
+        }
+        else
+            ended0 = true;
 
-		if (obj0 != null){
-			Vector3 destination = new Vector3 (target.transform.position.x + factor + 0.5f, obj0.transform.position.y, obj0.transform.position.z);
-			obj0.transform.position = Vector3.MoveTowards (obj0.transform.position, destination, step);
-			if (obj0.transform.position == destination)
-				ended0 = true;
-		}
-		else
-			ended0 = true;
-
-		if (obj1 != null){
-			Vector3 destination = new Vector3 (target.transform.position.x + factor, obj1.transform.position.y, obj1.transform.position.z);
-			obj1.transform.position = Vector3.MoveTowards (obj1.transform.position, destination, step);
-			if (obj1.transform.position == destination)
-				ended1 = true;
-		}
-		else
-			ended1 = true;
-		return ended0 && ended1;
-	}
+        if (obj1 != null)
+        {
+            if (currentState.boatPosition == BoatPosition.LEFT)
+                targetPosition1 = obj1.GetComponent<properties>().rightPosition;
+            else
+                targetPosition1 = obj1.GetComponent<properties>().leftPosition;
+            obj1.transform.position = Vector3.MoveTowards(obj1.transform.position, targetPosition1, step);
+            if (obj1.transform.position == targetPosition1)
+                ended1 = true;
+        }
+        else
+            ended1 = true;
+        return ended0 && ended1;
+    }
 
     private void setPassengersAnimation(bool animate)
     {
@@ -343,43 +341,6 @@ public class main : MonoBehaviour {
 		}
 		}
 
-//		public List<Node> Search(Node target){
-//			Queue<Node> border = new Queue<Node> ();
-//			LinkedList<Node> children = new LinkedList<Node> ();
-//			List<Node> path = new List<Node> ();
-//			LinkedList<Node> verified = new LinkedList<Node> ();
-//
-//			border.Enqueue (root);
-//			while (true) {
-//				if (border.Count == 0){
-//					Debug.Log ("not found");
-//					return null;
-//				}
-//				Node current = border.Dequeue ();
-//				if (current.state.isEqual (target.state)) {
-//					Debug.Log ("achou target");
-//					Debug.Log (string.Format( "nCL {0}, nBL {1}, nCR {2}, nBR {3} pos={4}", current.state.numCanibaisLeft , current.state.numBoysLeft, current.state.numCanibaisRight, current.state.numBoysRight, current.state.boatPosition));
-//
-//					path.Add (current);
-//					while (current.parent != null) {
-//						foreach (Node node in verified) {
-//							if (node == current.parent) {
-//								path.Insert(0, node);
-//								current = node;
-//							}
-//						}
-//						verified.Remove (current);
-//					}
-//					return path;
-//				}
-//				verified.AddFirst (current);
-//				children = expand (current);
-//				foreach(Node child in children){
-//					border.Enqueue (child);
-//				}
-//			}
-//		}
-//
 		private LinkedList<Node> expand(Node node){
 			LinkedList<Node> result = new LinkedList<Node>();
 			LinkedList<State> states = new LinkedList<State>();

@@ -50,6 +50,7 @@
      <Compile Include="Assets\Chibi Mummy\Scripts\control_script.cs" />
      <Compile Include="Assets\Scripts\BoatScript.cs" />
      <Compile Include="Assets\Scripts\main.cs" />
+     <Compile Include="Assets\Scripts\properties.cs" />
      <Compile Include="Assets\Supercyan Character Pack Free Sample\Scripts\CameraLogic.cs" />
      <Compile Include="Assets\Supercyan Character Pack Free Sample\Scripts\Demo.cs" />
      <Compile Include="Assets\Supercyan Character Pack Free Sample\Scripts\SimpleCharacterControl.cs" />
